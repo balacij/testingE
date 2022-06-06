@@ -200,8 +200,24 @@ yB = space2b (Add2b (Dbl2b 10) (QD2b (qdV2 "c" DblS)))
 yBBad :: Space
 yBBad = space2b (Add2b (Dbl2b 10) (QD2b (qdV2 "c" IntS)))
 
+-- Realistically, we would have symbols manually written
+-- So we would have to remember to never write: `realisticQD :: QuantityDictV2 t`
+-- but to always write something along the lines of:
+realisticQD :: QuantityDictV2 Double
+realisticQD = qdV2 "c" DblS
+
+badButRealisticQD :: QuantityDictV2 Double
+badButRealisticQD = qdV2 "c" IntS -- does not line up with type signature
+
 -- >>> yB
 -- DblS
 
 -- >>> yBBad
 -- DblS
+
+-- >>> space2b (Add2b (Dbl2b 10) (QD2b realisticQD))
+-- DblS
+
+-- >>> space2b (Add2b (Dbl2b 10) (QD2b badButRealisticQD))
+-- DblS
+
